@@ -1,4 +1,4 @@
-## Google Cloud Storage Reader with Tensorflow
+## Google Cloud Storage Reader with Tensorflow  
 Reads binary images from a Google Cloud Storage (GCS) bucket for use on Google ml-engine.  
 
 Repository Contents:  
