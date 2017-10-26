@@ -2,26 +2,18 @@ import tensorflow as tf
 
 
 def read_APS(filename_queue,image_shape):
-
     """ Reads aps file format (easily changed for other binary image files),
 	  from local destinations or GCS bucket. 
 
 	Args: filename queue: Tensorflow queue of files to read.
-
               image_shape: List containing size of image 
                   dimensions, [height,width,depth].
 
 	Returns: result. Contains attributes:
-		
-		uint8_image: Image data of type.uint8
-
-		label: Associated training label  
-                
-                key: Name of file read 
+	    uint8_image: Image data of type.uint8
+	    label: Associated training label  
+            key: Name of file read 
     """
-
-
-
     class APSrecord(object):
         pass
     result = APSrecord()
@@ -94,7 +86,6 @@ def _generate_image_and_label_batch(image, label,
     return images, tf.reshape(label_batch, [batch_size])
 
 def gen_inputs(file_list,IMAGE_SHAPE):
-
     """ Generates queued, batched training data and labels from
             the list of files we want to read. 
 
@@ -107,10 +98,7 @@ def gen_inputs(file_list,IMAGE_SHAPE):
       	  images: Images. rank 4 tensor of [batch_size, height, width, depth] size.
           labels: Labels. rank 2 tensor of [batch_size,num_classes] size,
             where num_classes is the length of our models output vector.
-
     """
-
- 
     for f in file_list:
         if not tf.gfile.Exists(f):
             raise ValueError('Failed to find file: ' + f)
@@ -144,5 +132,3 @@ def gen_inputs(file_list,IMAGE_SHAPE):
 
     return _generate_image_and_label_batch(float_image, read_input.label, batch_size,shuffle=False)
     
-
-
